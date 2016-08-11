@@ -7,6 +7,7 @@ import com.orhanobut.logger.Logger;
 
 import okhttp3.Headers;
 import retrofit2.Response;
+import rx.Observer;
 import top.wefor.powerfulretrofit.data.entity.UserEntity;
 import top.wefor.powerfulretrofit.net.HttpObserver;
 import top.wefor.powerfulretrofit.net.api.UserApi;
@@ -21,6 +22,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void retrofitTest() {
         new UserApi().getInfo("XunMengWinter").subscribe(
+                new Observer<UserEntity>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserEntity userEntity) {
+
+                    }
+                }
+        );
+
+        new UserApi().getInfo("XunMengWinter").subscribe(
                 new HttpObserver<UserEntity>() {
                     @Override
                     public void onComplete() {
@@ -32,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
 
         new UserApi().login(null)
                 .subscribe(new HttpObserver<Response<UserEntity>>() {
