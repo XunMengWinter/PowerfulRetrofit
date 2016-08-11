@@ -25,17 +25,17 @@ public class MainActivity extends AppCompatActivity {
                 new Observer<UserEntity>() {
                     @Override
                     public void onCompleted() {
-
+                        // 成功后
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        // 所有的错误全在这里
                     }
 
                     @Override
                     public void onNext(UserEntity userEntity) {
-
+                        // 成功后
                     }
                 }
         );
