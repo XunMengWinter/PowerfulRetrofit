@@ -30,9 +30,10 @@ public class BaseApi {
                 Request original = chain.request();
 
                 Request.Builder builder = original.newBuilder()
+                        .method(original.method(), original.body())
+                        //添加请求头部
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
-                        .method(original.method(), original.body())
                         .header("key", "value")
                         .header("key2", "value2");
                 if (isWithToken)
@@ -40,6 +41,7 @@ public class BaseApi {
 
                 Request finalRequest = builder.build();
                 HttpUrl url = finalRequest.url().newBuilder()
+                        // 在原链接上添加后缀，相当于在url上添加了 &platform=android&v=1.0
                         .addQueryParameter("platform", "android")
                         .addQueryParameter("v", "1.0")
                         .build();
