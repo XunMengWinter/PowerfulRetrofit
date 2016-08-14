@@ -40,6 +40,7 @@ public class BaseApi {
                     builder.header("token", App.get().getPreferencesHelper().getToken());
 
                 Request finalRequest = builder.build();
+
                 HttpUrl url = finalRequest.url().newBuilder()
                         // 在原链接上添加后缀，相当于在url上添加了 &platform=android&v=1.0
                         .addQueryParameter("platform", "android")
@@ -47,6 +48,7 @@ public class BaseApi {
                         .build();
 
                 Logger.i(url.toString());
+                finalRequest = finalRequest.newBuilder().url(url).build();
                 return chain.proceed(builder.build());
             }
         });
